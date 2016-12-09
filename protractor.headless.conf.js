@@ -1,9 +1,9 @@
 exports.config = {
     // if using seleniumServerJar, do not specify seleniumAddress !!!
-    seleniumServerJar: './node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-2.53.1.jar',
+    seleniumServerJar: './node_modules/selenium-server-standalone-jar/jar/selenium-server-standalone-2.53.1.jar',
     //port of the server
     seleniumPort: 4444,
-    seleniumArgs: ['-browserTimeout=60'],
+    seleniumArgs: ['-browserTimeout=30'],
     //seleniumAddress: 'http://localhost:4444/wd/hub',
     framework: 'jasmine',
     troubleshoot: false, //true if you want to see actual web-driver configuration
@@ -15,10 +15,10 @@ exports.config = {
         'phantomjs.cli.args': ['--ignore-ssl-errors=true', '--web-security=false']
     },
 
-    specs: ['test/*.js'], //path to the test specs
-    allScriptsTimeout: 60000,
-    getPageTimeout: 60000,
-    baseUrl: 'http://localhost:8080/',
+    specs: ['test/e2e/**/*.js'], //path to the test specs
+    allScriptsTimeout: 11000,
+    getPageTimeout: 11000,
+
 
     // Options to be passed to Jasmine-node.
     onPrepare: function () {
@@ -30,14 +30,12 @@ exports.config = {
                 new jasmineReporters.JUnitXmlReporter('xmloutput', true, true)
             );
     },
+
     //Jasmine configuration
     jasmineNodeOpts: {
         showColors: true,
-        defaultTimeoutInterval: 60000,
+        defaultTimeoutInterval: 11000,
         isVerbose: false,
         includeStackTrace: false
-    },
-    'phantomjs.ghostdriver.cli.args': ['--loglevel=DEBUG']
-
-
+    }
 };

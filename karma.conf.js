@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Tue Dec 06 2016 10:24:43 GMT+0300 (MSK)
+// Generated on Mon Dec 05 2016 16:14:20 GMT+0300 (MSK)
 
 module.exports = function(config) {
   config.set({
@@ -15,14 +15,14 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        'bower_components/angular/angular.js',
-        'bower_components/angular-mocks/angular-mocks.js',
-        'app/*.js'
+        './test/javascript/jasmine/**/*.js'
     ],
 
 
     // list of files to exclude
     exclude: [
+      './src/app/**/*.async.js',
+        './src/test/javascript/e2e/**/*.js'
     ],
 
 
@@ -52,7 +52,7 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+    autoWatch: false,
 
 
     // start these browsers
@@ -62,10 +62,26 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+    specReporter: {
+      maxLogLines: 5,         // limit number of lines logged per test
+      suppressErrorSummary: true,  // do not print error summary
+      suppressFailed: false,  // do not print information about failed tests
+      suppressPassed: false,  // do not print information about passed tests
+      suppressSkipped: true,  // do not print information about skipped tests
+      showSpecTiming: false // print the time elapsed for each spec
+    },
+
+      plugins : [
+          'karma-jasmine',
+          'karma-chrome-launcher',
+          'karma-phantomjs-launcher',
+          'karma-spec-reporter'
+      ]
   })
 }
