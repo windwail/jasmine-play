@@ -343,8 +343,10 @@ gulp.task('clean-build-app-prod', ['clean-prod'], pipes.builtAppProd);
 
 
 
+// default task builds for prod
+gulp.task('default', ['clean-build-app-prod']);
 
 // Web unit and end-to-end test
-gulp.task('d', ['webserver-stop']);
+gulp.task('d', ['webserver', 'e2e', 'webserver-stop']);
 
 

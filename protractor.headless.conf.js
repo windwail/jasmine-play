@@ -2,7 +2,7 @@ exports.config = {
     // if using seleniumServerJar, do not specify seleniumAddress !!!
     seleniumServerJar: './node_modules/selenium-server-standalone-jar/jar/selenium-server-standalone-2.53.1.jar',
     //port of the server
-    seleniumPort: 4444,
+
     seleniumArgs: ['-browserTimeout=30'],
     //seleniumAddress: 'http://localhost:4444/wd/hub',
     framework: 'jasmine',
