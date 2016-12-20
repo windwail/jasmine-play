@@ -266,6 +266,15 @@ gulp.task('karma-test', function (done) {
     }, done).start();
 });
 
+// Наблюдается проблемка с зависанием теста на 30 секундв после выполнения.
+// Какие-то баги в карме и socket.io,
+gulp.task('kt', function (done) {
+    return new KarmaServer({
+        configFile: __dirname + '/karma-unit.conf.js',
+        singleRun: true
+    }, done).start();
+});
+
 // Решение проблемы с зависанием на 30 секунд полсе теса. Баги в либах.
 // https://github.com/karma-runner/karma/issues/1788
 // https://github.com/karma-runner/gulp-karma/pull/23#issuecomment-232313832

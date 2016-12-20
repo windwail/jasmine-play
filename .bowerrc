@@ -1,5 +1,4 @@
 {
-  "directory": "bower_components",
-  "proxy": "http://172.28.0.66:8080",
-  "https-proxy": "http://172.28.0.66:8080"
+  "directory": "bower_components"
+
 }
