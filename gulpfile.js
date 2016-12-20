@@ -235,13 +235,13 @@ gulp.task('webserver', function () {
         }));
 });
 
-gulp.task('webserver-stop', function (cb) {
+gulp.task('webserver-stop', ['webserver', 'e2e' ], function (cb) {
     http.request('http://localhost:8000/_kill_').on('close', cb).end();
 });
 
 
 // Setting up the test task
-gulp.task('e2e', function(done) {
+gulp.task('e2e', ['webserver'], function(done) {
     var args = ['--baseUrl', 'http://127.0.0.1:8000'];
     gulp.src(["./test/e2e/*.js"])
         .pipe(protractor({
@@ -249,10 +249,12 @@ gulp.task('e2e', function(done) {
             args: args
         }))
         .on('error', function(e) {
-            http.request('http://localhost:8000/_kill_').on('close', done).end();
+            console.log("ERROR!!!");
+            //http.request('http://localhost:8000/_kill_').on('close', done).end();
             throw e; })
-        .on('success', function(e) {
-            http.request('http://localhost:8000/_kill_').on('close', done).end();
+        .on('end', function(e) {
+            console.log("SUCCESS!!!");
+            //http.request('http://localhost:8000/_kill_').on('close', done).end();
             done();
         });
 });
@@ -351,9 +353,9 @@ gulp.task('clean-build-app-prod', ['clean-prod'], pipes.builtAppProd);
 
 
 // default task builds for prod
-gulp.task('d', ['clean-build-app-prod']);
+gulp.task('default', ['clean-build-app-prod']);
 
 // Web unit and end-to-end test
-gulp.task('default', ['webserver', 'e2e', 'webserver-stop']);
+gulp.task('d', ['webserver', 'e2e', 'webserver-stop']);
 
 
